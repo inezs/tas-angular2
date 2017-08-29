@@ -5,21 +5,20 @@
         <md-icon>menu</md-icon>
     </button>
 </span>
-<span class="title">Training Admin System</span>
+<span><a class="title" routerLink="/home">Training Admin System</a></span>
 </md-toolbar>
 
 <md-sidenav-container>
 <md-sidenav #sidenav>
-<button md-button color="accent">Period</button>
-<button md-button>User</button>
-<button md-button color="accent">Enrollment</button>
-<button md-button>Achievement</button>
-<button md-button color="accent">Training Maintenance</button>
+<button md-button (click)=sidenav.close() color="accent" routerLink="/home/period" >Period</button>
+<button md-button (click)=sidenav.close()>User</button>
+<button md-button (click)=sidenav.close() color="accent">Enrollment</button>
+<button md-button (click)=sidenav.close()>Achievement</button>
 <hr>
-<a href="/" md-button color="warn" >Logout</a>
+<button md-button color="warn" routerLink="/">Logout</button>
 </md-sidenav>
 
-<div class="app-content">
+<div class="app-content mat-typography">
     <router-outlet></router-outlet>
 </div>
 </md-sidenav-container>
