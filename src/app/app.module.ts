@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { PeriodComponent } from './home/period/period.component';
+import { UserComponent } from './home/user/user.component';
+import { EnrollmentComponent } from './home/enrollment/enrollment.component';
+import { AchievementComponent } from './home/achievement/achievement.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { PeriodComponent } from './home/period/period.component';
     HomeComponent,
     DashboardComponent,
     PeriodComponent,
+    UserComponent,
+    EnrollmentComponent,
+    AchievementComponent,
   ],
   imports: [
     BrowserModule,

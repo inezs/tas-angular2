@@ -10,10 +10,10 @@
 
 <md-sidenav-container>
 <md-sidenav #sidenav>
-<button md-button (click)=sidenav.close() color="accent" routerLink="/home/period" >Period</button>
-<button md-button (click)=sidenav.close()>User</button>
-<button md-button (click)=sidenav.close() color="accent">Enrollment</button>
-<button md-button (click)=sidenav.close()>Achievement</button>
+<button md-button (click)=sidenav.close() routerLink="/home/period" color="accent">Period</button>
+<button md-button (click)=sidenav.close() routerLink="/home/user" >User</button>
+<button md-button (click)=sidenav.close() routerLink="/home/enrollment" color="accent">Enrollment</button>
+<button md-button (click)=sidenav.close() routerLink="/home/achievement">Achievement</button>
 <hr>
 <button md-button color="warn" routerLink="/">Logout</button>
 </md-sidenav>
