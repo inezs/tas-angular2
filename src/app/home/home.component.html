@@ -1,40 +1,24 @@
 <!-- Dashboard UI -->
 <md-toolbar color="primary" class="mat-elevation-z4">
-    <span>
-        <button class="menu" type="button" md-button (click)="sidenav.toggle()">
-            <md-icon>menu</md-icon>
-        </button>
-    </span>
-    <span class="title">Training Admin System</span>
-  </md-toolbar>
-  
-  <md-sidenav-container>
-  <md-sidenav #sidenav>
-    <button md-button color="accent">Period</button>
-    <button md-button>User</button>
-    <button md-button color="accent">Enrollment</button>
-    <button md-button>Achievement</button>
-    <hr>
-    <button md-button color="warn">Logout</button>
-  </md-sidenav>
-  
-  <div class="app-content">
-    <content>
-      <div>
-          <md-card>
-              <md-card-title>Active Training</md-card-title>
-              <md-card-content>
-              </md-card-content>
-          </md-card>
-      </div>
-      <div>
-          <md-card>
-              <md-card-title>BCC Schedule</md-card-title>
-              <md-card-content>
-                      
-              </md-card-content>
-          </md-card>
-      </div>
-    </content>
-  </div>
-  </md-sidenav-container>
+<span>
+    <button class="menu" type="button" md-button (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+    </button>
+</span>
+<span class="title">Training Admin System</span>
+</md-toolbar>
+
+<md-sidenav-container>
+<md-sidenav #sidenav>
+<button md-button color="accent">Period</button>
+<button md-button>User</button>
+<button md-button color="accent">Enrollment</button>
+<button md-button>Achievement</button>
+<hr>
+<a href="/" md-button color="warn" >Logout</a>
+</md-sidenav>
+
+<div class="app-content">
+    <router-outlet></router-outlet>
+</div>
+</md-sidenav-container>

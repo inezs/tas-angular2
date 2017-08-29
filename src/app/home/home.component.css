@@ -3,7 +3,7 @@ md-sidenav {
   width: 200px;
   text-align: center;
 }
-md-sidenav button {
+md-sidenav button, a {
   height: 45px;
   width: 200px;
 }
