@@ -11,8 +11,10 @@ button.menu{
   min-width: 0;
   padding: 0 8px;
 }
-span.title{
+a.title{
   padding-left: 8px;
+  color: #ffffff;
+  text-decoration: none;
 }
 .app-content {
   width: 90%;
@@ -22,7 +24,6 @@ span.title{
   justify-content: center;
   padding-left: 5%;
   padding-right: 5%;
-  font-family : "Roboto","Helvetica Neue",sans-serif;
 }
 md-sidenav-container {
   position: fixed;
