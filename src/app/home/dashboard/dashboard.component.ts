@@ -9,7 +9,9 @@ import 'rxjs/add/observable/of';
 })
 export class DashboardComponent {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns2 = ['index', 'name', 'gender', 'company', 'balance'];
   dataSource = new ExampleDataSource();
+  dataSource2 = new ExampleDataSource2();
 }
 
 export interface Element {
@@ -18,8 +20,15 @@ export interface Element {
   weight: number;
   symbol: string;
 }
+export interface Employee {
+  index: number;
+  balance: string;
+  name: string;
+  gender: string;
+  company: string;
+}
 
-const data: Element[] = [
+const data1: Element[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -41,6 +50,43 @@ const data: Element[] = [
   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
 ];
+const data2: Employee[] = [
+  {
+    "index": 0,
+    "balance": "$3,459.35",
+    "name": "Mara Hayes",
+    "gender": "female",
+    "company": "RAMEON"
+  },
+  {
+    "index": 1,
+    "balance": "$2,734.57",
+    "name": "Madeleine Mullins",
+    "gender": "female",
+    "company": "QUOTEZART"
+  },
+  {
+    "index": 2,
+    "balance": "$2,423.89",
+    "name": "Key Shelton",
+    "gender": "male",
+    "company": "OPTICOM"
+  },
+  {
+    "index": 3,
+    "balance": "$2,365.96",
+    "name": "Whitley Nieves",
+    "gender": "male",
+    "company": "KRAGGLE"
+  },
+  {
+    "index": 4,
+    "balance": "$1,323.08",
+    "name": "Horton Franks",
+    "gender": "male",
+    "company": "SENMAO"
+  }
+]
 
 /**
  * Data source to provide what data should be rendered in the table. The observable provided
@@ -51,7 +97,15 @@ const data: Element[] = [
 export class ExampleDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Element[]> {
-    return Observable.of(data);
+    return Observable.of(data1);
+  }
+
+  disconnect() {}
+}
+export class ExampleDataSource2 extends DataSource<any> {
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Employee[]> {
+    return Observable.of(data2);
   }
 
   disconnect() {}

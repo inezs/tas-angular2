@@ -29,7 +29,6 @@
             
                 <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
                 <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-                
               
             </md-table>
               
@@ -40,7 +39,37 @@
     <md-card>
         <md-card-title>BCC Schedule</md-card-title>
         <md-card-content>
+            <md-table [dataSource]="dataSource2">
                 
+                <ng-container mdColumnDef="index">
+                    <md-header-cell *mdHeaderCellDef> index. </md-header-cell>
+                    <md-cell *mdCellDef="let employee"> {{employee.index}} </md-cell>
+                </ng-container>
+
+                <ng-container mdColumnDef="name">
+                    <md-header-cell *mdHeaderCellDef> index. </md-header-cell>
+                    <md-cell *mdCellDef="let employee"> {{employee.name}} </md-cell>
+                </ng-container>
+
+                <ng-container mdColumnDef="gender">
+                    <md-header-cell *mdHeaderCellDef> index. </md-header-cell>
+                    <md-cell *mdCellDef="let employee"> {{employee.gender}} </md-cell>
+                </ng-container>
+
+                <ng-container mdColumnDef="company">
+                    <md-header-cell *mdHeaderCellDef> index. </md-header-cell>
+                    <md-cell *mdCellDef="let employee"> {{employee.company}} </md-cell>
+                </ng-container>
+
+                <ng-container mdColumnDef="balance">
+                    <md-header-cell *mdHeaderCellDef> index. </md-header-cell>
+                    <md-cell *mdCellDef="let employee"> {{employee.balance}} </md-cell>
+                </ng-container>
+            
+                <md-header-row *mdHeaderRowDef="displayedColumns2"></md-header-row>
+                <md-row *mdRowDef="let row; columns: displayedColumns2;"></md-row>
+                
+            </md-table>
         </md-card-content>
     </md-card>
 </div>
