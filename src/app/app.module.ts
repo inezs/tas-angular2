@@ -13,6 +13,7 @@ import { PeriodComponent } from './home/period/period.component';
 import { UserComponent } from './home/user/user.component';
 import { EnrollmentComponent } from './home/enrollment/enrollment.component';
 import { AchievementComponent } from './home/achievement/achievement.component';
+import { MaintenanceComponent } from './home/maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AchievementComponent } from './home/achievement/achievement.component';
     UserComponent,
     EnrollmentComponent,
     AchievementComponent,
+    MaintenanceComponent,
   ],
   imports: [
     BrowserModule,

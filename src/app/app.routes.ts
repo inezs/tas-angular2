@@ -6,6 +6,7 @@ import { PeriodComponent } from './home/period/period.component'
 import { UserComponent } from './home/user/user.component'
 import { EnrollmentComponent } from './home/enrollment/enrollment.component'
 import { AchievementComponent } from './home/achievement/achievement.component'
+import { MaintenanceComponent } from "./home/maintenance/maintenance.component";
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
         {path: 'period',        component: PeriodComponent},
         {path: 'user',          component: UserComponent},
         {path: 'enrollment',    component: EnrollmentComponent},
-        {path: 'achievement',   component: AchievementComponent}
+        {path: 'achievement',   component: AchievementComponent},
+        {path: 'maintenance',   component: MaintenanceComponent}
     ]},
 ];
 
