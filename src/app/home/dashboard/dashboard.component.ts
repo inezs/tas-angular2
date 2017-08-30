@@ -8,104 +8,61 @@ import 'rxjs/add/observable/of';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  displayedColumns2 = ['index', 'name', 'gender', 'company', 'balance'];
-  dataSource = new ExampleDataSource();
-  dataSource2 = new ExampleDataSource2();
+  // Active Training DataStream
+  activeTrainingColumns = ['courseName', 'mainTrainer', 'backupTrainer', 'startDate', 'endDate', 'trainingLocation'];
+  activeTrainingDataSource = new ActiveTrainingDataSource();
+  
+  //BCC Schedule DataStream
+  BCCColumns = ['trainerName', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+  BCCDataSource = new BCCDataSource();
+
 }
 
-export interface Element {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-export interface Employee {
-  index: number;
-  balance: string;
-  name: string;
-  gender: string;
-  company: string;
+//Active Training Interface and Data Stream Controller
+export interface activeTraining {
+  courseName: string;
+  mainTrainer: string;
+  backupTrainer: string;
+  startDate: string;
+  endDate: string;
+  trainingLocation: string;
 }
 
-const data1: Element[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
-const data2: Employee[] = [
-  {
-    "index": 0,
-    "balance": "$3,459.35",
-    "name": "Mara Hayes",
-    "gender": "female",
-    "company": "RAMEON"
-  },
-  {
-    "index": 1,
-    "balance": "$2,734.57",
-    "name": "Madeleine Mullins",
-    "gender": "female",
-    "company": "QUOTEZART"
-  },
-  {
-    "index": 2,
-    "balance": "$2,423.89",
-    "name": "Key Shelton",
-    "gender": "male",
-    "company": "OPTICOM"
-  },
-  {
-    "index": 3,
-    "balance": "$2,365.96",
-    "name": "Whitley Nieves",
-    "gender": "male",
-    "company": "KRAGGLE"
-  },
-  {
-    "index": 4,
-    "balance": "$1,323.08",
-    "name": "Horton Franks",
-    "gender": "male",
-    "company": "SENMAO"
-  }
+const activeTrainingData: activeTraining[] = [
+  {courseName: 'Angular 2', mainTrainer: 'Carmen', backupTrainer:'-', startDate:'21-08-2017', endDate: '20-09-2017', trainingLocation: "Bali"},
+  {courseName: 'Full Stack', mainTrainer: 'Agus', backupTrainer:'Budi', startDate:'10-08-2017', endDate: '09-09-2017', trainingLocation: "Yogyakarta"},
+  {courseName: 'Database', mainTrainer: 'Budi Wasweswos', backupTrainer:'Sudyatmiko', startDate:'11-08-2017', endDate: '11-09-2017', trainingLocation: "Yogyakarta"}
 ]
 
-/**
- * Data source to provide what data should be rendered in the table. The observable provided
- * in connect should emit exactly the data that should be rendered by the table. If the data is
- * altered, the observable should emit that new set of data on the stream. In our case here,
- * we return a stream that contains only one set of data that doesn't change.
- */
-export class ExampleDataSource extends DataSource<any> {
+export class ActiveTrainingDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(data1);
+  connect(): Observable<activeTraining[]> {
+    return Observable.of(activeTrainingData);
   }
 
   disconnect() {}
 }
-export class ExampleDataSource2 extends DataSource<any> {
+
+//BCC Schedule Interface and Data Stream Controller
+
+export interface BCCSchedule {
+  trainerName: string;
+  monday: string;
+  tuesday: string;
+  wednesday: string;
+  thursday: string;
+  friday: string;
+}
+
+const BCCScheduleData: BCCSchedule[] = [
+  {trainerName: "Denny", monday:'Bali office (10.00 - 12.00)', tuesday:"-", wednesday:'-',thursday: '-', friday:'-'},
+  {trainerName: "Dimas", monday:'-', tuesday:"-", wednesday:'-',thursday: 'Yogyakarta office (15.00 - 17.00)', friday:'-'},
+]
+
+export class BCCDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Employee[]> {
-    return Observable.of(data2);
+  connect(): Observable<BCCSchedule[]> {
+    return Observable.of(BCCScheduleData);
   }
 
   disconnect() {}
