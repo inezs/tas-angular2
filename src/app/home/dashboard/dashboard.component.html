@@ -1,44 +1,38 @@
-<div>
+<div class="content">
     <md-card>
         <md-card-title>Active Training</md-card-title>
         <md-card-content>
-            <table>
-                <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                    <th>Country</th>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                </tr>
-                <tr>
-                    <td>Ernst Handel</td>
-                    <td>Roland Mendel</td>
-                    <td>Austria</td>
-                </tr>
-                <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                    <td>Canada</td>
-                </tr>
-                <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                    <td>Italy</td>
-                </tr>
-            </table>
+            <md-table [dataSource]="dataSource">
+
+                <ng-container mdColumnDef="position">
+                    <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+                    <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container mdColumnDef="name">
+                    <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+                    <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container mdColumnDef="weight">
+                    <md-header-cell *mdHeaderCellDef> Weight </md-header-cell>
+                    <md-cell *mdCellDef="let element"> {{element.weight}} </md-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container mdColumnDef="symbol">
+                    <md-header-cell *mdHeaderCellDef> Symbol </md-header-cell>
+                    <md-cell *mdCellDef="let element"> {{element.symbol}} </md-cell>
+                </ng-container>
+            
+                <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+                <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+                
+              
+            </md-table>
+              
         </md-card-content>
     </md-card>
 </div>
