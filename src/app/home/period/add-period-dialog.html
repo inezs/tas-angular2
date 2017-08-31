@@ -1,15 +1,31 @@
 <h1 md-dialog-title>Add Period</h1>
-<div md-dialog-content>
-    <form>
+
+<form>
+    <div md-dialog-content>
         <md-form-field color="accent">
-            <input mdInput placeholder="Training Name">
+            <input mdInput placeholder="Training Name" [(ngModel)]='data.trainingName' name="trainingName">
         </md-form-field>
+    </div>
+    <div md-dialog-content>
         <md-form-field color="accent">
-            <input mdInput placeholder="Start Date">
+            <input mdInput placeholder="Start Date" [(ngModel)]='data.startDate' name="startDate" [mdDatepicker]="startDate" [max]=data.endDate>
+            <md-datepicker-toggle mdSuffix [for]="startDate"></md-datepicker-toggle>
+            <md-datepicker #startDate></md-datepicker>
+            <md-error *ngIf="addPeriodFormControl.hasError('required')">
+                    Start Date is <strong>required</strong>
+            </md-error>
         </md-form-field>
+    </div>
+    <div md-dialog-content>
         <md-form-field color="accent">
-            <input mdInput placeholder="End Date">
+            <input mdInput placeholder="End Date" [(ngModel)]='data.endDate' name="endDate" [mdDatepicker]="endDate" [min]='data.startDate'>
+            <md-datepicker-toggle mdSuffix [for]="endDate"></md-datepicker-toggle>
+            <md-datepicker #endDate></md-datepicker>
+            <md-error *ngIf="addPeriodFormControl.hasError('required')">
+                    End Date is <strong>required</strong>
+            </md-error>
         </md-form-field>
-        <button md-raised-button color="accent">Add Period</button>
-    </form>
-</div>
+    </div>
+    <button md-raised-button color="accent" [md-dialog-close]="data">Add Period</button>
+    <button md-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+</form>

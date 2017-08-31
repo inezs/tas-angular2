@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
+import { NgModule} from '@angular/core';
+import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms'
 import { routing } from "./app.routes"
 import 'hammerjs';
 
@@ -32,6 +33,9 @@ import { MaintenanceComponent } from './home/maintenance/maintenance.component';
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
+    FormsModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     routing
   ],
   providers: [],

@@ -1,3 +1,7 @@
 .add-period{
     text-align: right;
 }
+
+md-form-field{
+    width: 100%;
+}

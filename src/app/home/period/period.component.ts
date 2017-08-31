@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './period.component.html',
@@ -9,27 +10,33 @@ export class PeriodComponent {
   trainingName: string;
   startDate: string;
   endDate: string;
+  
 
   constructor(public addPeriod: MdDialog) {}
 
   openDialog(): void {
     let dialogRef = this.addPeriod.open(AddPeriodDialog, {
-      width: '250px',
-      // data: { trainingName: this.trainingName, startDate: this.startDate, endDate: this.endDate }
+      width: '40%',
+      data: { trainingName: ""}
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   console.log(result);
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      this.trainingName = result.trainingName;
+      this.startDate = result.startDate;
+      this.endDate = result.endDate;
+    });
   }
 
 }
 
 @Component({
   templateUrl: 'add-period-dialog.html',
+  styleUrls: ['./period.component.css']
 })
 export class AddPeriodDialog {
+  addPeriodFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   constructor(
     public dialogRef: MdDialogRef<AddPeriodDialog>,
