@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
-import { PeriodComponent } from './home/period/period.component';
+import { PeriodComponent, AddPeriodDialog } from './home/period/period.component';
 import { UserComponent } from './home/user/user.component';
 import { EnrollmentComponent } from './home/enrollment/enrollment.component';
 import { AchievementComponent } from './home/achievement/achievement.component';
@@ -22,6 +22,7 @@ import { MaintenanceComponent } from './home/maintenance/maintenance.component';
     HomeComponent,
     DashboardComponent,
     PeriodComponent,
+    AddPeriodDialog,
     UserComponent,
     EnrollmentComponent,
     AchievementComponent,
@@ -34,6 +35,9 @@ import { MaintenanceComponent } from './home/maintenance/maintenance.component';
     routing
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddPeriodDialog
+  ]
 })
 export class AppModule { }
