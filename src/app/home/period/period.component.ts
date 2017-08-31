@@ -1,12 +1,23 @@
-import { Component, Inject } from '@angular/core';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdPaginator } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
+import { DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+
+
 
 @Component({
   templateUrl: './period.component.html',
   styleUrls: ['./period.component.css']
 })
 export class PeriodComponent {
+
+  
+
   trainingName: string;
   startDate: string;
   endDate: string;
@@ -17,7 +28,7 @@ export class PeriodComponent {
   openDialog(): void {
     let dialogRef = this.addPeriod.open(AddPeriodDialog, {
       width: '40%',
-      data: { trainingName: ""}
+      data: { trainingName: "" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
