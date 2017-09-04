@@ -2,17 +2,48 @@
   <md-card>
     <md-card-title>Training Period</md-card-title>
     <md-card-content>
-        <div class="add-period"><button md-raised-button color="accent" (click)="openDialog()"><md-icon>add</md-icon> Add Period</button></div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorem laboriosam vel consectetur at. Aperiam ipsa recusandae ea, consectetur perspiciatis dolore animi laudantium iste accusantium minus, deleniti dignissimos explicabo repudiandae.</p>
+      <div class="add-period"><button md-raised-button color="accent" (click)="openDialog()"><md-icon>add</md-icon> Add Period</button></div>
+      
+      <md-table #table [dataSource]="dataSource">
+        
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container mdColumnDef="position">
+          <md-header-cell *mdHeaderCellDef> No. </md-header-cell>
+          <md-cell *mdCellDef="let element"> {{element.position}} </md-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container mdColumnDef="name">
+          <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
+          <md-cell *mdCellDef="let element"> {{element.name}} </md-cell>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container mdColumnDef="weight">
+          <md-header-cell *mdHeaderCellDef> Weight </md-header-cell>
+          <md-cell *mdCellDef="let element"> {{element.weight}} </md-cell>
+        </ng-container>
+    
+        <!-- Color Column -->
+        <ng-container mdColumnDef="symbol">
+          <md-header-cell *mdHeaderCellDef> Symbol </md-header-cell>
+          <md-cell *mdCellDef="let element"> {{element.symbol}} </md-cell>
+        </ng-container>
+    
+        <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+      </md-table>
+
+      <md-paginator #paginator
+            [length]="periodDatabase.data.length"
+            [pageIndex]="0"
+            [pageSize]="5"
+            [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+ 
     </md-card-content>
   </md-card>
 </div>
