@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA, MdPaginator } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { DataSource } from '@angular/cdk/collections';
@@ -7,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 
 //Structure
@@ -15,14 +18,22 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./period.component.css']
 })
 export class PeriodComponent {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['trainingName', 'activeStatus', 'coursesCount', 'startDate', 'endDate', 'createdBy', 'editedBy', 'action'];
   periodDatabase = new PeriodDatabase();
   dataSource: PeriodDataSource | null;
 
   @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild('filter') filter: ElementRef;
   
   ngOnInit() {
     this.dataSource = new PeriodDataSource(this.periodDatabase, this.paginator);
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        });
   }
   
   trainingName: string;
@@ -69,10 +80,13 @@ export class AddPeriodDialog {
 
 //table
 export interface Period {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  trainingName: string;
+  activeStatus: boolean;
+  coursesCount: number;
+  startDate: string;
+  endDate: string;
+  createdBy: string;
+  editedBy: string;
 }
 
 export class PeriodDatabase {
@@ -80,49 +94,43 @@ export class PeriodDatabase {
   get data(): Period[] { return this.dataChange.value; }
 
   constructor() {
-    const periodData: Period[] = [
-      {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-      {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-      {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-      {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-      {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-      {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-      {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-      {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-      {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-      {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-      {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-      {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-      {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-      {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-      {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-      {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-      {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-      {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-      {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-      {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-    ];
-    this.dataChange.next(periodData);
+    this.dataChange.next([
+      {trainingName: 'ASP .NET', activeStatus: true , coursesCount: 3 , startDate:'10-11-2017', endDate:'20-10-2017', createdBy:"Yuliawan Rizka", editedBy: "Yuliawan Rizka"},
+      {trainingName: 'ASP .NET', activeStatus: false , coursesCount: 3 , startDate:'10-11-2017', endDate:'20-10-2017', createdBy:"Yuliawan Rizka", editedBy: "Lynx"},
+    ]);
   }
 }
 
 export class PeriodDataSource extends DataSource<any> {
-
+  _filterChange = new BehaviorSubject('');
+  get filter(): string { return this._filterChange.value; }
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+  filteredData: Period[] = [];
+  renderedData: Period[] = [];
   constructor(private _periodDatabase: PeriodDatabase, private _paginator: MdPaginator) {
     super();
   }
   connect(): Observable<Period[]> {
     const displayDataChanges = [
       this._periodDatabase.dataChange,
+      this._filterChange,
       this._paginator.page,
     ];
 
+
     return Observable.merge(...displayDataChanges).map(() => {
-      const data = this._periodDatabase.data.slice();
+      this.filteredData = this._periodDatabase.data.slice().filter((item: Period) => {
+        let searchStr = (item.trainingName + item.startDate + item.endDate + item.createdBy + item.editedBy).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+      });
+
 
       // Grab the page's slice of data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      return data.splice(startIndex, this._paginator.pageSize);
+      this.renderedData = this.filteredData.splice(startIndex, this._paginator.pageSize);
+      return this.renderedData;
     });
   }
 
