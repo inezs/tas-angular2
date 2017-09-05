@@ -18,7 +18,10 @@
 
         <ng-container mdColumnDef="activeStatus">
           <md-header-cell *mdHeaderCellDef> Active </md-header-cell>
-          <md-cell *mdCellDef="let period"> {{period.activeStatus}} </md-cell>
+          <md-cell *mdCellDef="let period"> 
+            <div *ngIf=period.activeStatus; else elseBlock>Truthy condition</div>
+            <ng-template #elseBlock>Falsy condition</ng-template>
+          </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="coursesCount">
@@ -59,16 +62,6 @@
                   <button md-icon-button class="md-small" color="warn" mdTooltip="Delete"><md-icon>delete</md-icon></button>
               </md-menu>
 
-
-              <!-- <div>
-                <span><button md-icon-button class="md-small" mdTooltip="Eligible Participant List"><md-icon>supervisor_account</md-icon></button></span>
-                <span><button md-icon-button class="md-small" mdTooltip="Schedule List"><md-icon>date_range</md-icon></button></span>
-                <span><button md-icon-button class="md-small" mdTooltip="Edit"><md-icon>border_color</md-icon></button></span>
-                <span><button md-icon-button class="md-small" mdTooltip="Delete"><md-icon>delete</md-icon></button></span>
-              </div>
-              <div>
-                
-              </div> -->
             </md-cell>
           </ng-container>
     
