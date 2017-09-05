@@ -9,15 +9,20 @@
       </div>
       <div class="add-period inline"><button md-raised-button color="accent" (click)="openDialog()"><md-icon>add</md-icon> Add Period</button></div>
       
-      <md-table #table [dataSource]="dataSource">
+      <md-table #table [dataSource]="dataSource" mdSort>
         
+        <ng-container mdColumnDef="id">
+          <md-header-cell *mdHeaderCellDef md-sort-header> ID </md-header-cell>
+          <md-cell *mdCellDef="let period"> {{period.id}} </md-cell>
+        </ng-container>
+
         <ng-container mdColumnDef="trainingName">
-          <md-header-cell *mdHeaderCellDef> Training Name </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> Training Name </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.trainingName}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="activeStatus">
-          <md-header-cell *mdHeaderCellDef> Active </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> Active </md-header-cell>
           <md-cell *mdCellDef="let period"> 
             <div *ngIf=period.activeStatus; else elseBlock>Truthy condition</div>
             <ng-template #elseBlock>Falsy condition</ng-template>
@@ -25,32 +30,32 @@
         </ng-container>
 
         <ng-container mdColumnDef="coursesCount">
-          <md-header-cell *mdHeaderCellDef> # of Courses </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> # of Courses </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.coursesCount}} </md-cell>
         </ng-container>
         
         <ng-container mdColumnDef="startDate">
-          <md-header-cell *mdHeaderCellDef> Start Date </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> Start Date </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.startDate}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="endDate">
-          <md-header-cell *mdHeaderCellDef> End Date </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> End Date </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.endDate}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="createdBy">
-          <md-header-cell *mdHeaderCellDef> Created By </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> Created By </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.createdBy}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="editedBy">
-          <md-header-cell *mdHeaderCellDef> Edited By </md-header-cell>
+          <md-header-cell *mdHeaderCellDef md-sort-header> Edited By </md-header-cell>
           <md-cell *mdCellDef="let period"> {{period.editedBy}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="action">
-            <md-header-cell *mdHeaderCellDef> Action </md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header> Action </md-header-cell>
             <md-cell *mdCellDef="let period">
               
 

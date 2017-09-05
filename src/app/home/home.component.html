@@ -1,5 +1,7 @@
+
 <!-- Dashboard UI -->
-<md-toolbar color="primary" class="mat-elevation-z4">
+<md-sidenav-container>
+<md-toolbar color="primary" >
 <span>
     <button class="menu" type="button" md-button (click)="sidenav.toggle()">
         <md-icon>menu</md-icon>
@@ -7,16 +9,24 @@
 </span>
 <span><a class="title" routerLink="/home" (click)=sidenav.close()>Training Admin System</a></span>
 </md-toolbar>
-
-<md-sidenav-container>
 <md-sidenav #sidenav>
-<button md-button (click)=sidenav.close() routerLink="/home/period" color="accent">Period</button>
-<button md-button (click)=sidenav.close() routerLink="/home/user" color="accent">User</button>
-<button md-button (click)=sidenav.close() routerLink="/home/enrollment" color="accent">Enrollment</button>
-<button md-button (click)=sidenav.close() routerLink="/home/achievement" color="accent">Achievement</button>
-<button md-button (click)=sidenav.close() routerLink="/home/maintenance" color="accent">Training Maintenance</button>
-<hr>
-<button md-button color="warn" routerLink="/">Logout</button>
+
+<div style='background-color:#673AB7'>
+<br>
+<div style='color:#FFFFFF;font-size: 18px;font-family:Roboto; '>Asda</div><br>
+<div  style='color:#FFFFFF;font-size: 18px;font-family:Roboto;'>Administrator</div><br>
+</div>
+<button md-button (click)=sidenav.close() routerLink="/home/period" color="white">Period</button>
+<button md-button (click)=sidenav.close() routerLink="/home/user" color="white">User</button>
+<button md-button (click)=sidenav.close() routerLink="/home/enrollment" color="white">Enrollment</button>
+<button md-button (click)=sidenav.close() routerLink="/home/achievement" color="white">Achievement</button>
+<button md-button (click)=sidenav.close() routerLink="/home/maintenance" color="white">Training Maintenance</button>
+
+<div style='background-color:#B71C1C'>
+<button md-button color="white" routerLink="/">Logout</button>
+</div>
+
+
 </md-sidenav>
 
 <div class="app-content mat-typography">
