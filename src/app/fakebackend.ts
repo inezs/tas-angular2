@@ -7,7 +7,7 @@ export let fakeBackendProvider = {
     provide: Http,
     useFactory: (backend: MockBackend, options: BaseRequestOptions) => {
         // array in local storage for registered users
-        let users: any[] = [
+        var users: any[] = [
             {"id": 1, "username": "Luke_S", "password":"lukes", "role":1},
             {"id": 2, "username": "Darth_V", "password":"anakin", "role":2},
             {"id": 3, "username": "Han_S", "password":"hans", "role":3},
