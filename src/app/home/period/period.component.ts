@@ -121,7 +121,7 @@ export class PeriodDataSource extends DataSource<any> {
   }
   filteredData: Period[] = [];
   renderedData: Period[] = [];
-  sortedData: Period[] = [];
+  //sortedData: Period[] = [];
   constructor(private _periodDatabase: PeriodDatabase, private _paginator: MdPaginator, private _sort: MdSort) {
     super();
   }
@@ -140,21 +140,24 @@ export class PeriodDataSource extends DataSource<any> {
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
 
+     const sortedData = this.getSortedData(this.filteredData.slice());
 
       // Grab the page's slice of data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      this.renderedData = this.filteredData.splice(startIndex, this._paginator.pageSize);
+      this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+
+      
       return this.renderedData;
 
-      //return this.getSortedData();
+      
 
     });
   }
 
   disconnect() {}
 
-  getSortedData(): Period[] {
-    const data = this._periodDatabase.data.slice();
+  getSortedData(data: Period[]): Period[] {
+    //const data = this._periodDatabase.data.slice();
     if (!this._sort.active || this._sort.direction == '') { return data; }
 
     return data.sort((a, b) => {
