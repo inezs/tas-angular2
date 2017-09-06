@@ -24,6 +24,7 @@ import { AuthGuard } from './authguard.service';
 import { AuthenticationService } from './authentication.service';
 import { UserService } from './user.service';
 import { AlertService } from './alert.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 // used to create fake backend
 import { fakeBackendProvider } from './fakebackend';
@@ -55,6 +56,7 @@ import { BaseRequestOptions } from '@angular/http';
     AuthenticationService,
     UserService,
     AlertService,
+    CookieService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

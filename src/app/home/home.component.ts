@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+import {CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { User } from '../user';
 
@@ -19,9 +20,13 @@ export class HomeComponent{
   
   constructor( private userService: UserService,
     private authenticationService: AuthenticationService,
-    
+    private cookieService:CookieService
   ){
-    this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+    //Using local storage:
+    // this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+
+    //using cookie
+    this.currentUser=JSON.parse(this.cookieService.get('currentUserLocalHost'));
   }
   logout(){
     this.authenticationService.logout();
