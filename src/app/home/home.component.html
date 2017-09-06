@@ -10,6 +10,13 @@
 
 <md-sidenav-container>
 <md-sidenav #sidenav>
+<span>
+    <p>{{currentUser.name}}</p>
+    <p *ngIf="currentUser.role==1">Administrator</p>
+    <p *ngIf="currentUser.role==2">Trainer</p>
+    <p *ngIf="currentUser.role==3">Manager</p>
+    <p *ngIf="currentUser.role==4">Participant</p>
+</span>
 <button md-button color="accent" >{{currentUser.name}}</button>
 <button md-button (click)=sidenav.close() routerLink="/home/period" color="accent" >Period</button>
 <button md-button (click)=sidenav.close() routerLink="/home/user" color="accent" *ngIf="currentUser.role==1">User</button>
