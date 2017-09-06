@@ -22,7 +22,6 @@ export class HomeComponent{
     
   ){
     this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser.role);
   }
   logout(){
     this.authenticationService.logout();

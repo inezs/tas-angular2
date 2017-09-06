@@ -8,10 +8,10 @@ export let fakeBackendProvider = {
     useFactory: (backend: MockBackend, options: BaseRequestOptions) => {
         // array in local storage for registered users
         var users: any[] = [
-            {"id": 1, "username": "Luke_S", "password":"lukes", "role":1},
-            {"id": 2, "username": "Darth_V", "password":"anakin", "role":2},
-            {"id": 3, "username": "Han_S", "password":"hans", "role":3},
-            {"id": 4, "username": "Anakin_S", "password":"vader", "role":4}
+            {"id": 1, "name":"Luke Skywalker", "username": "Luke_S", "password":"lukes", "role":1},
+            {"id": 2, "name":"Darth Vader", "username": "Darth_V", "password":"anakin", "role":2},
+            {"id": 3, "name":"Han Solo","username": "Han_S", "password":"hans", "role":3},
+            {"id": 4, "name":"Anakin Sykwalker","username": "Anakin_S", "password":"vader", "role":4}
         ]
 
         // configure fake backend
@@ -36,6 +36,7 @@ export let fakeBackendProvider = {
                             status: 200,
                             body: {
                                 id: user.id,
+                                name: user.name,
                                 username: user.username,
                                 role: user.role,
                                 token: 'fake-jwt-token'
