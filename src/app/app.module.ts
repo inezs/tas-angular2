@@ -2,16 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
 import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-<<<<<<< HEAD
-import { FormsModule } from '@angular/forms'
-import { routing } from "./app.routes"
-=======
 import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { routing } from "./app.routes";
 
->>>>>>> e7167e77aa7f5e3fce132da8975ff67ea4c17b7a
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -55,18 +50,9 @@ import { BaseRequestOptions } from '@angular/http';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-<<<<<<< HEAD
+    HttpModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    routing
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    AddPeriodDialog
-  ]
-=======
-    HttpModule,
     routing
   ],
   providers: [AuthGuard,
@@ -79,7 +65,9 @@ import { BaseRequestOptions } from '@angular/http';
     MockBackend,
     BaseRequestOptions
   ],
-  bootstrap: [AppComponent]
->>>>>>> e7167e77aa7f5e3fce132da8975ff67ea4c17b7a
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddPeriodDialog
+  ]
 })
 export class AppModule { }
