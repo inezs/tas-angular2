@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule} from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { routing } from "./app.routes";
 
@@ -47,6 +48,7 @@ import { BaseRequestOptions } from '@angular/http';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpModule,
     routing
   ],
   providers: [AuthGuard,
