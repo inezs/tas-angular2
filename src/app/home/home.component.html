@@ -10,6 +10,7 @@
 <span><a class="title" routerLink="/home" (click)=sidenav.close()>Training Admin System</a></span>
 </md-toolbar>
 <md-sidenav #sidenav>
+<<<<<<< HEAD
 
 <div style='background-color:#673AB7'>
 <br>
@@ -27,10 +28,25 @@
 </div>
 
 
+=======
+<span>
+    <p>{{currentUser.name}}</p>
+    <p *ngIf="currentUser.role==1">Administrator</p>
+    <p *ngIf="currentUser.role==2">Trainer</p>
+    <p *ngIf="currentUser.role==3">Manager</p>
+    <p *ngIf="currentUser.role==4">Participant</p>
+</span>
+<button md-button (click)=sidenav.close() routerLink="/home/period" color="accent" >Period</button>
+<button md-button (click)=sidenav.close() routerLink="/home/user" color="accent" *ngIf="currentUser.role==1">User</button>
+<button md-button (click)=sidenav.close() routerLink="/home/enrollment" color="accent">Enrollment</button>
+<button md-button (click)=sidenav.close() routerLink="/home/achievement" color="accent" *ngIf= "currentUser.role==1 || currentUser.role==2">Achievement</button>
+<button md-button (click)=sidenav.close() routerLink="/home/maintenance" color="accent">Training Maintenance</button>
+<hr>
+<button md-button color="warn" (click)=logout() routerLink="/login">Logout</button>
+>>>>>>> e7167e77aa7f5e3fce132da8975ff67ea4c17b7a
 </md-sidenav>
 
 <div class="app-content mat-typography">
     <router-outlet></router-outlet>
 </div>
-
 </md-sidenav-container>
