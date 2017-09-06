@@ -1,4 +1,4 @@
-<h1 md-dialog-title>Add Period</h1>
+<h1 md-dialog-title>{{data.operattion}} Period</h1>
 
 <form>
     <div md-dialog-content>
@@ -26,6 +26,6 @@
             </md-error>
         </md-form-field>
     </div>
-    <button md-raised-button color="accent" [md-dialog-close]="data">Add Period</button>
+    <button md-raised-button style='background-color:#673AB7' [md-dialog-close]="data">Add Period</button>
     <button md-raised-button color="warn" (click)="onNoClick()">Cancel</button>
 </form>

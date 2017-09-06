@@ -3,11 +3,11 @@
     <md-card-title>Training Period</md-card-title>
     <md-card-content>
       <div class="filter inline">
-        <md-form-field color="#673AB7">
+        <md-form-field>
           <input mdInput #filter placeholder="Search">
         </md-form-field>
       </div>
-      <div class="add-period inline"><button md-raised-button style='background-color:#673AB7'  (click)="openDialog()"><md-icon>add</md-icon> Add Period</button></div>
+      <div class="add-period inline"><button md-raised-button style='background-color:#673AB7'  (click)="openDialog('Create')"><md-icon>add</md-icon> Add Period</button></div>
       
       <md-table #table [dataSource]="dataSource" mdSort>
         
@@ -63,7 +63,7 @@
               <md-menu #menu="mdMenu">
                   <button md-icon-button class="md-small" color="accent" mdTooltip="Eligible Participant List"><md-icon>supervisor_account</md-icon></button>
                   <button md-icon-button class="md-small" color="accent" mdTooltip="Schedule List"><md-icon>date_range</md-icon></button>
-                  <button md-icon-button class="md-small" color="accent" mdTooltip="Edit"><md-icon>border_color</md-icon></button>
+                  <button md-icon-button class="md-small" color="accent" mdTooltip="Edit"  (click)="editDialog('Update',period)"><md-icon>border_color</md-icon></button>
                   <button md-icon-button class="md-small" color="warn" mdTooltip="Delete"><md-icon>delete</md-icon></button>
               </md-menu>
 
