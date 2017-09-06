@@ -24,8 +24,8 @@
         <ng-container mdColumnDef="activeStatus">
           <md-header-cell *mdHeaderCellDef md-sort-header> Active </md-header-cell>
           <md-cell *mdCellDef="let period"> 
-            <div *ngIf=period.activeStatus; else elseBlock>Truthy condition</div>
-            <ng-template #elseBlock>Falsy condition</ng-template>
+            <div *ngIf=period.activeStatus; else elseBlock>Active</div>
+            <ng-template #elseBlock>Not Active</ng-template>
           </md-cell>
         </ng-container>
 
